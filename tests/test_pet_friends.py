@@ -146,9 +146,9 @@ def test_add_pet_photo_invalid_auth_key():
     age = "3"
     name = "Yan"
     type = "snake"
-    _, auth_key = pf.get_api_key(creds['valid_email'], creds['pass'])
-    status, result = pf.add_new_pet_simple_without_photo(auth_key, name, type, age)
     pet_photo = "images/pes1.jpg"
     pet_photo = os.path.join(os.path.dirname(__file__), pet_photo)
+    _, auth_key = pf.get_api_key(creds['valid_email'], creds['pass'])
+    status, result = pf.add_new_pet_simple_without_photo(auth_key, name, type, age)
     status, result = pf.set_pet_photo(auth_key={'key': 'incorrect_key'}, pet_id=result["id"], pet_photo=pet_photo)
     assert status == 403
